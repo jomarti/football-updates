@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TeamResultsComponent } from './team-results.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ActivatedRouteMock } from 'src/app/modules/shared';
 import { FixtureService } from '../../services';
 import { FixtureServiceMock } from '../../services/fixture/fixture.service.mocks';
+import { ActivatedRouteMock } from '../../mocks';
 
 describe('TeamResultsComponent', () => {
   let component: TeamResultsComponent;

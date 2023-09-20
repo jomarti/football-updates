@@ -2,13 +2,12 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 
 import { HomeContainerComponent } from './home-container.component';
 import { ActivatedRoute } from '@angular/router';
-import { ActivatedRouteMock } from 'src/app/modules/shared';
 import { CountryService, LeagueService, StandingsService } from '../../services';
 import { CountryServiceMock } from '../../services/country/country.service.mocks';
 import { LeagueServiceMock } from '../../services/league/league.service.mocks';
 import { StandingsServiceMock } from '../../services/standings/standings.service.mocks';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { getCountries } from '../../mocks';
+import { ActivatedRouteMock, getCountries } from '../../mocks';
 import { Country } from '../../models';
 
 describe('HomeContainerComponent', () => {
