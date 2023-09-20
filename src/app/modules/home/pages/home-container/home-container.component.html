@@ -1,0 +1,10 @@
+<div>
+    <app-header *ngIf="countries"
+    [countries]="countries"
+    [selectedCountry]="countrySelected"
+    (selCountry)="onSelectCountry($event)"></app-header>
+    
+    <app-standings [leagueId]="leagueId" [currentYear]="currentYear" [standings]="standings" *ngIf="countrySelected && standings && leagueId && currentYear "></app-standings>
+</div>
+
+
