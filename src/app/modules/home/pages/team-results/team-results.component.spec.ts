@@ -4,7 +4,7 @@ import { TeamResultsComponent } from './team-results.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FixtureService } from '../../services';
 import { FixtureServiceMock } from '../../services/fixture/fixture.service.mocks';
-import { ActivatedRouteMock } from '../../mocks';
+import { ActivatedRouteMock, getFixture } from '../../mocks';
 
 describe('TeamResultsComponent', () => {
   let component: TeamResultsComponent;
@@ -42,5 +42,10 @@ describe('TeamResultsComponent', () => {
       ['/home'], 
       { queryParams: { leagueId: '39', currentYear: '2023'} }
     );
+  });
+
+  it('trackByItems should return id', () => {
+    const fixtureFake = getFixture().response[0];
+    expect(component.trackByItem(0, fixtureFake)).toEqual(48);
   });
 });

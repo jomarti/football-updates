@@ -1,6 +1,8 @@
 {
   "name": "football-updates",
   "version": "1.0.0",
+  "author": "Jordi Marti Alamillo",
+  "description": "Build a small football (soccer) updates application that follows results from the top 5 European leagues",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -40,7 +42,7 @@
     "@types/jasmine": "4.3.0",
     "@typescript-eslint/eslint-plugin": "5.62.0",
     "@typescript-eslint/parser": "5.62.0",
-    "eslint": "^8.49.0",
+    "eslint": "8.49.0",
     "husky": "8.0.3",
     "jasmine-core": "4.6.0",
     "karma": "6.4.0",

@@ -12,4 +12,7 @@ export class StandingsComponent {
   @Input() leagueId!: string;
   @Input() standings: Standing[]= [];
 
+  trackByItem(index: number, item: Standing): number {
+    return item.rank;
+  }
 }

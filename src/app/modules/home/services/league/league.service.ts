@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, map, of, shareReplay } from 'rxjs';
+import { Observable, map, shareReplay } from 'rxjs';
 import { LeagueServiceModule } from './league.service.module';
-import { LeagueInfo } from '../../models';
-import { getLeague } from '../../mocks';
+import { ApiLeagueResponse, LeagueInfo } from '../../models';
 import { API_URL_PREFIX, API_KEY } from '../../constants';
 
 @Injectable({
@@ -21,18 +20,11 @@ export class LeagueService {
       })
     };
     
-    /*
-    return this.http.get<ApiLeagueResponse>(url, <Object>HEADER_OPTIONS)
+    return this.http.get<ApiLeagueResponse>(url, HEADER_OPTIONS)
     .pipe(
       map(data => data.response),
       shareReplay()
-    );
-    */
-    return of(getLeague())
-    .pipe(
-      map(data => data.response),
-      shareReplay()
-    );
+      );
   }
 }
 

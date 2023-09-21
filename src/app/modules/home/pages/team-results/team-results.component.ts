@@ -45,6 +45,10 @@ export class TeamResultsComponent implements OnInit, OnDestroy {
     );
   }
 
+  trackByItem(index: number, item: Fixture): number {
+    return item.teams.home.id + index;
+  }
+
   private loadFixtures(): void {
     this.fixtureService.getFixtureTeam(this.leagueId, this.teamId, this.currentYear)
     .pipe(

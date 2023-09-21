@@ -19,7 +19,8 @@ import { CountryServiceModule, StandingsServiceModule, LeagueServiceModule, Fixt
     HomeRoutingModule,
     CountryServiceModule,
     StandingsServiceModule,
-    LeagueServiceModule
+    LeagueServiceModule,
+    FixtureServiceModule
   ],
   providers: [CountryServiceModule, FixtureServiceModule, LeagueServiceModule, StandingsServiceModule]
 })

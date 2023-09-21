@@ -4,7 +4,12 @@
     [selectedCountry]="countrySelected"
     (selCountry)="onSelectCountry($event)"></app-header>
     
-    <app-standings [leagueId]="leagueId" [currentYear]="currentYear" [standings]="standings" *ngIf="countrySelected && standings && leagueId && currentYear "></app-standings>
+    <app-standings
+        *ngIf="showStandings"
+        [leagueId]="leagueId"
+        [currentYear]="currentYear"
+        [standings]="standings">
+    </app-standings>
 </div>
 
 

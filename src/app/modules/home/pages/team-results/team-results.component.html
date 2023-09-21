@@ -2,7 +2,7 @@
     <div class="fixtures-container">
         <table class="fixtures-container-table">
             <tbody>
-                <tr *ngFor="let fixture of fixtures; let i=index;">
+                <tr *ngFor="let fixture of fixtures; trackBy: trackByItem;">
                     <td class="size2 center">
                         <img width="40" alt="{{fixture.teams.home.name}} Logo" [src]="fixture.teams.home.logo"/>
                     </td>

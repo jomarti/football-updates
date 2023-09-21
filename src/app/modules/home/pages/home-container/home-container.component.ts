@@ -21,6 +21,7 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
   public league!: SimpleLeague;
   public leagueId!: string;
   public currentYear!: string;
+  public showStandings = false;
 
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
@@ -32,6 +33,7 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
   ) {}
   
   ngOnInit(): void {
+    this.showStandings = false;
     this.activatedRoute.queryParams
       .subscribe(params => {
         this.leagueId = params['leagueId'];
@@ -68,6 +70,7 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
       const league = standings[0].league;
       this.countrySelected = league.country
       this.standings = league.standings[0];
+      this.showStandings = true;
     })
   }
 

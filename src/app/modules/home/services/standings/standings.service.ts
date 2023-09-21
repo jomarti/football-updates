@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { StandingsServiceModule } from './standings.service.module';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, map, of, shareReplay } from 'rxjs';
-import { getStandings } from '../../mocks';
-import { StandingLeague } from '../../models/standing.model';
+import { Observable, map, shareReplay } from 'rxjs';
+import { ApiStandingLeagueResponse, StandingLeague } from '../../models/standing.model';
 import { API_KEY, API_URL_PREFIX } from '../../constants';
 
 @Injectable({
@@ -20,11 +19,7 @@ export class StandingsService {
         'x-apisports-key': API_KEY,
       })
     };
-    
-    /*
-    return this.http.get<ApiStandingLeagueResponse>(url, <Object>HEADER_OPTIONS)
-    */
-   return of(getStandings())
+    return this.http.get<ApiStandingLeagueResponse>(url, HEADER_OPTIONS)
     .pipe(
       map(data => data.response),
       shareReplay()
