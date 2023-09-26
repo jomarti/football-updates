@@ -5,13 +5,10 @@
         display: flex;
         font-weight: 600;
         gap: 10px;
-        height: 60px;
         left: 0;
-        padding: 0 40px;
+        padding: 20px 40px 40px;
         place-items: center;
-        position: absolute;
-        right: 0;
-        top: 50px;
+        position: relative;
 
         &-table {
             background-color: rgba(151, 147, 147, 0.5);
@@ -45,8 +42,6 @@
     }
     .fixtures-footer {
         padding: 0 40px;
-        position: absolute;
-        top: 350px;
 
         .back-btn {
             width: 120px;
