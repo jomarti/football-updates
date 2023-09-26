@@ -62,7 +62,27 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
+            },
+            "mocks": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.mocks.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -75,6 +95,9 @@
             },
             "development": {
               "browserTarget": "football-updates:build:development"
+            },
+            "mocks": {
+              "browserTarget": "football-updates:build:mocks"
             }
           },
           "defaultConfiguration": "development"
