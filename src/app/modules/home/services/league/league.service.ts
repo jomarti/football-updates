@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map, shareReplay } from 'rxjs';
 import { LeagueServiceModule } from './league.service.module';
 import { ApiLeagueResponse, LeagueInfo } from '../../models';
-import { API_URL_PREFIX, API_KEY } from '../../constants';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: LeagueServiceModule
@@ -13,10 +13,10 @@ export class LeagueService {
   constructor(private http: HttpClient) { }
 
   getLeague(leagueId: string): Observable<LeagueInfo[]> {
-    const url = `${API_URL_PREFIX}/leagues?id=${leagueId}&current=true`;
+    const url = `${environment.apiUrlPrefix}/leagues?id=${leagueId}&current=true`;
     const HEADER_OPTIONS = {
       headers: new HttpHeaders({
-        'x-apisports-key': API_KEY,
+        'x-apisports-key': environment.apiKey,
       })
     };
     

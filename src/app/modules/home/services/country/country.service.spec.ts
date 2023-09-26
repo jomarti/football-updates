@@ -35,4 +35,9 @@ describe('CountryService', () => {
 
     request.flush(getCountries());
   }));
+
+  it('should get cached countries', () => {
+    service['countries'] = getCountries().response;
+    expect(service.getCachedCounties()).toBeDefined();
+  });
 });

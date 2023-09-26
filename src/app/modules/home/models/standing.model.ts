@@ -14,7 +14,7 @@ export interface League {
 
 export interface Standing {
     rank: number;
-    team: Team;
+    team: TeamBasic;
     points: number;
     goalsDiff: number;
     all: {
@@ -25,7 +25,7 @@ export interface Standing {
     }
 }
 
-export interface Team {
+export interface TeamBasic {
     id: number;
     name: string;
     logo: string;
