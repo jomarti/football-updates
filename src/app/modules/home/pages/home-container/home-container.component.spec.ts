@@ -2,13 +2,14 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 
 import { HomeContainerComponent } from './home-container.component';
 import { ActivatedRoute } from '@angular/router';
-import { CountryService, LeagueService, StandingsService } from '../../services';
+import { CountryService, LeagueService, SecureStorageService, StandingsService } from '../../services';
 import { CountryServiceMock } from '../../services/country/country.service.mocks';
 import { LeagueServiceMock } from '../../services/league/league.service.mocks';
 import { StandingsServiceMock } from '../../services/standings/standings.service.mocks';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ActivatedRouteMock, getCountries } from '../../mocks';
 import { Country } from '../../models';
+import { SecureStorageServiceMock } from '../../services/secure-storage/secure-storage.service.mocks';
 
 describe('HomeContainerComponent', () => {
   let component: HomeContainerComponent;
@@ -34,6 +35,10 @@ describe('HomeContainerComponent', () => {
           provide: StandingsService,
           useClass: StandingsServiceMock,
         },
+        {
+          provide: SecureStorageService,
+          useClass: SecureStorageServiceMock,
+        }
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     });

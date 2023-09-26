@@ -2,9 +2,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TeamResultsComponent } from './team-results.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FixtureService } from '../../services';
+import { FixtureService, SecureStorageService, TeamService } from '../../services';
 import { FixtureServiceMock } from '../../services/fixture/fixture.service.mocks';
-import { ActivatedRouteMock, getFixture } from '../../mocks';
+import { ActivatedRouteMock } from '../../mocks';
+import { TeamServiceMock } from '../../services/team/team.service.mocks';
+import { SecureStorageServiceMock } from '../../services/secure-storage/secure-storage.service.mocks';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('TeamResultsComponent', () => {
   let component: TeamResultsComponent;
@@ -22,8 +25,17 @@ describe('TeamResultsComponent', () => {
         {
           provide: FixtureService,
           useClass: FixtureServiceMock,
+        },
+        {
+          provide: TeamService,
+          useClass: TeamServiceMock,
+        },
+        {
+          provide: SecureStorageService,
+          useClass: SecureStorageServiceMock,
         }
-      ]
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     });
     fixture = TestBed.createComponent(TeamResultsComponent);
     component = fixture.componentInstance;
@@ -43,9 +55,5 @@ describe('TeamResultsComponent', () => {
       { queryParams: { leagueId: '39', currentYear: '2023'} }
     );
   });
-
-  it('trackByItems should return id', () => {
-    const fixtureFake = getFixture().response[0];
-    expect(component.trackByItem(0, fixtureFake)).toEqual(48);
-  });
+  
 });

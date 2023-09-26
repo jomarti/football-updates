@@ -5,14 +5,24 @@ import { HomeContainerComponent } from './pages/home-container/home-container.co
 import { HeaderComponent } from './components/header/header.component';
 import { StandingsComponent } from './components/standings/standings.component';
 import { TeamResultsComponent } from './pages/team-results/team-results.component';
-import { CountryServiceModule, StandingsServiceModule, LeagueServiceModule, FixtureServiceModule } from './services';
+import {
+  CountryServiceModule,
+  StandingsServiceModule,
+  LeagueServiceModule,
+  FixtureServiceModule,
+  TeamServiceModule,
+  SecureStorageServiceModule } from './services';
+import { TeamResultsCardComponent } from './components/team-results-card/team-results-card.component';
+import { TeamCardComponent } from './components/team-card/team-card.component';
 
 @NgModule({
   declarations: [
     HomeContainerComponent,
     HeaderComponent,
     StandingsComponent,
-    TeamResultsComponent
+    TeamResultsComponent,
+    TeamResultsCardComponent,
+    TeamCardComponent
   ],
   imports: [
     CommonModule,
@@ -20,8 +30,10 @@ import { CountryServiceModule, StandingsServiceModule, LeagueServiceModule, Fixt
     CountryServiceModule,
     StandingsServiceModule,
     LeagueServiceModule,
-    FixtureServiceModule
+    FixtureServiceModule,
+    TeamServiceModule,
+    SecureStorageServiceModule
   ],
-  providers: [CountryServiceModule, FixtureServiceModule, LeagueServiceModule, StandingsServiceModule]
+  providers: [CountryServiceModule, FixtureServiceModule, LeagueServiceModule, StandingsServiceModule, TeamServiceModule, SecureStorageServiceModule]
 })
 export class HomeModule { }

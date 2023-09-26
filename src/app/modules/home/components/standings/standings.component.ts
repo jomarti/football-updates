@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Standing } from '../../models/standing.model';
+import { Country } from '../../models';
 
 @Component({
   selector: 'app-standings',
@@ -10,6 +11,7 @@ export class StandingsComponent {
 
   @Input() currentYear!: string;
   @Input() leagueId!: string;
+  @Input() country!: Country;
   @Input() standings: Standing[]= [];
 
   trackByItem(index: number, item: Standing): number {

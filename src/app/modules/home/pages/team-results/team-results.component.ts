@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, shareReplay, takeUntil } from 'rxjs';
-import { FixtureService } from '../../services';
+import { Subject, shareReplay, takeUntil, zip } from 'rxjs';
+import { FixtureService, SecureStorageService, TeamService } from '../../services';
 import { Fixture } from '../../models/fixture.model';
+import { Country, TeamData } from '../../models';
+import { COUNTRY_KEY } from '../../constants';
 
 @Component({
   selector: 'app-team-results',
@@ -15,13 +17,17 @@ export class TeamResultsComponent implements OnInit, OnDestroy {
   public teamId!: number;
   public currentYear!: string;
   public fixtures!: Fixture[];
+  public team!: TeamData;
+  public countries!: Country[];
 
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
     private routeActive: ActivatedRoute,
     private router: Router,
-    private fixtureService: FixtureService
+    private fixtureService: FixtureService,
+    private teamService: TeamService,
+    private secureStorageService: SecureStorageService
   ) {}
 
   ngOnInit(): void {
@@ -45,17 +51,18 @@ export class TeamResultsComponent implements OnInit, OnDestroy {
     );
   }
 
-  trackByItem(index: number, item: Fixture): number {
-    return item.teams.home.id + index;
-  }
-
   private loadFixtures(): void {
-    this.fixtureService.getFixtureTeam(this.leagueId, this.teamId, this.currentYear)
+    zip(
+      this.fixtureService.getFixtureTeam(this.leagueId, this.teamId, this.currentYear),
+      this.teamService.getTeam(this.teamId)
+    )
     .pipe(
       takeUntil(this.ngUnsubscribe),
       shareReplay()
-    ).subscribe(fixtures => {
+    ).subscribe(([fixtures, team]) => {
       this.fixtures = fixtures;
+      this.team = team[0];
+      this.countries = JSON.parse(this.secureStorageService.getData(COUNTRY_KEY));
     });
   }
 

@@ -1,12 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Country } from '../../models/country.model';
-import { CountryService, LeagueService, StandingsService } from '../../services';
+import { CountryService, LeagueService, SecureStorageService, StandingsService } from '../../services';
 import { Subject, concatMap, shareReplay, takeUntil } from 'rxjs';
 import { LEAGUES_IDS } from '../../constants/league.constant';
 
 import { SimpleLeague } from '../../models/league.model';
 import { ActivatedRoute } from '@angular/router';
 import { Standing } from '../../models/standing.model';
+import { COUNTRY_KEY } from '../../constants';
 
 @Component({
   selector: 'app-home-container',
@@ -17,6 +18,7 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
   
   public countries: Country[] = [];
   public countrySelected!: string;
+  public country!: Country;
   public standings!: Standing[];
   public league!: SimpleLeague;
   public leagueId!: string;
@@ -29,7 +31,8 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private countryService: CountryService,
     private standingsService: StandingsService,
-    private leagueService: LeagueService
+    private leagueService: LeagueService,
+    private secureStorageService: SecureStorageService
   ) {}
   
   ngOnInit(): void {
@@ -54,6 +57,7 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
   onSelectCountry(country: Country): void {
     this.leagueId = this.getLeagueId(country.name);
     this.countrySelected = country.name;
+    this.country = country;
     this.loadLeague();
   }
 
@@ -78,6 +82,7 @@ export class HomeContainerComponent implements OnInit, OnDestroy {
     this.countryService.getCountries()
     .pipe(takeUntil(this.ngUnsubscribe))
     .subscribe((countries) => {
+      this.secureStorageService.saveData(COUNTRY_KEY, JSON.stringify(countries));
       this.countries = countries;
     })
   }
