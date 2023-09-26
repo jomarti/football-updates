@@ -1,6 +1,6 @@
 {
   "name": "football-updates",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Jordi Marti Alamillo",
   "description": "Build a small football (soccer) updates application that follows results from the top 5 European leagues",
   "scripts": {
